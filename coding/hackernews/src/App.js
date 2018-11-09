@@ -21,6 +21,14 @@ const list = [
 ]
 
 class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: list,
+    };
+  }
+
   render() {
     const helloWorld = 'Welcome to the Road to learn React'
     const userSam = {firstName: 'Sam', lastName: 'Comerford'}
@@ -30,17 +38,16 @@ class App extends Component {
         <h4>Current User: { userSam.firstName } { userSam.lastName }</h4>
         <br/>
         {
-          list.map(item => {
-            return (
+          this.state.list.map(item =>
             <div key={item.objectID}>
-              <span><a href={item.url}>{item.title} </a></span> 
-              <span>{item.author} - </span>
-              <span>(Comments: {item.num_comments} </span>
-              <span>Likes: {item.points})</span>
+              <span>
+                <a href={item.url}>{item.title}</a>
+              </span>
+              <span>{item.author}</span>
+              <span> - comments: {item.num_comments}</span>
+              <span> - points: {item.points}</span>
             </div>
-            )
-          })
-        }
+        )}
       </div>
     );
   }
